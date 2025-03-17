@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create("productos", function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("idProvedor");
+            $table->unsignedBigInteger("idProveedor");
             $table->string("nombreProducto");
             $table->integer("stockProducto");
             $table->integer("gramajeProducto");
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->decimal("precioProduccionProducto", 10, 2);
             $table->timestamp("created_at")->nullable();
             $table->timestamp("updated_at")->nullable();
-            $table->foreign("idProvedor")->references("id")->on("provedores");
+            $table->foreign("idProveedor")->references("id")->on("proveedores");
         });
     }
 
