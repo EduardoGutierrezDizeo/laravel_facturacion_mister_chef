@@ -22,15 +22,23 @@ class Factura extends Model
         'registerBy',
     ];
 
-    public function cliente(){
-        return $this->belongsTo(Cliente::class, 'id_cliente');
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'clientes_id');
     }
 
-    public function cuneta_por_cobrar(){
-        return $this->belongsTo(Cuenta_por_cobrar::class);
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'usuarios_id');
     }
 
-    public function detalles_factura(){
-        return $this->hasMany(Detalle_factura::class);
+    public function detalles()
+    {
+        return $this->hasMany(Detalle_Factura::class, 'facturas_id');
+    }
+
+    public function cuentaPorCobrar()
+    {
+        return $this->hasOne(Cuenta_Por_Cobrar::class, 'facturas_id');
     }
 }

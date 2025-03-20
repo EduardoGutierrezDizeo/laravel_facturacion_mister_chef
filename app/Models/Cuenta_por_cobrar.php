@@ -18,11 +18,13 @@ class Cuenta_por_cobrar extends Model
         'numeroFactura',
         'totalCuentaPendiente',
         'status',
-    ] ;
+    ];
 
-    public function factura(){
-        return $this->belongsTo(Cliente::class, 'factura_id');
+    public function factura()
+    {
+        return $this->belongsTo(Factura::class, 'facturas_id');
     }
+
 }
 
 

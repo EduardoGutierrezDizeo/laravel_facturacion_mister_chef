@@ -5,26 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-
-class Detalle_factura extends Model
+class Detalle_compra extends Model
 {
     use HasFactory;
 
-    protected $table = 'detalles_factura';
+    protected $table = 'detalles_compra';
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'idProducto',
-        'idFactura',
+        'producti_id',
+        'factura_id',
         'nombreProducto',
-        'cantidadProducto',
+        'cantidad',
         'precio',
         'subTotal',
     ];
 
-    public function factura()
+    public function facturaCompra()
     {
-        return $this->belongsTo(Factura::class, 'facturas_id');
+        return $this->belongsTo(Factura_Compra::class, 'factura_compra_id');
     }
 
     public function producto()

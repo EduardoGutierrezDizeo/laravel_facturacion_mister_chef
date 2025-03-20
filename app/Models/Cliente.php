@@ -20,7 +20,9 @@ class Cliente extends Model
         'status',
     ];
 
-    public function facturas(){
-        return $this->hasMany(Factura::class);
+    public function facturas()
+    {
+        return $this->hasMany(Factura::class, 'clientes_id');
     }
+
 }
