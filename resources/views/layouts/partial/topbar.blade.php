@@ -1,5 +1,5 @@
 <nav 
-class="navbar navbar-expand navbar-white navbar-light {{ Request::is('dashboard') ? 'main-header' : '' }}">
+class="navbar navbar-expand navbar-white navbar-light px-5 {{ Request::is('dashboard') ? 'main-header' : '' }}">
   <!-- Left navbar links -->
   <ul class="navbar-nav">
     <li class="nav-item">
@@ -9,7 +9,7 @@ class="navbar navbar-expand navbar-white navbar-light {{ Request::is('dashboard'
 
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
-    <li class="nav-item">
+    <li class="nav-item mr-3">
       <a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false" v-pre>
         @if (Auth::check())
@@ -21,10 +21,10 @@ class="navbar navbar-expand navbar-white navbar-light {{ Request::is('dashboard'
       </a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item flex items-center">
       <a class="dropdown-item" href="{{ route('logout') }}"
         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        <i class='fas fa-sign-out-alt'></i>
+        <i class='fas fa-sign-out-alt text-[20px]'></i>
       </a>
 
       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
