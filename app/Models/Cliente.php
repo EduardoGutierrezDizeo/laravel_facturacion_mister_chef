@@ -12,15 +12,17 @@ class Cliente extends Model
     protected $table = 'clientes';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'name',
+        'nombre',
         'email',
-        'phone',
-        'address',
-        'bornDate',
+        'telefono',
+        'direccion',
+        'fechaNacimiento',
         'status',
     ];
 
-    public function facturas(){
-        return $this->hasMany(Factura::class);
+    public function facturas()
+    {
+        return $this->hasMany(Factura::class, 'cliente_id');
     }
+
 }

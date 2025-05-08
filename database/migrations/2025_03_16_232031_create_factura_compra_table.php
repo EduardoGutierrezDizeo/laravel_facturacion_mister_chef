@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('proveedor_id');
             $table->unsignedBigInteger('usuario_id');
-            $table->string('nombreProvedor');
-            $table->string('telefono');
             $table->dateTime('fecha');
             $table->char('status');
             $table->string('registradoPor');

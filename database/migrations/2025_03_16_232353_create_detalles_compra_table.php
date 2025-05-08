@@ -14,14 +14,13 @@ return new class extends Migration
         Schema::create('detalles_compra', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('producto_id');
-            $table->unsignedBigInteger('factura_id');
-            $table->string('nombrePoducto');
+            $table->unsignedBigInteger('facturaCompra_id');
             $table->integer('cantidad');
             $table->decimal('precio',10,2);
             $table->decimal('subTotal',10,2);
             $table->timestamps();
             $table->foreign('producto_id')->references('id')->on('productos');
-            $table->foreign('factura_id')->references('id')->on('facturas');
+            $table->foreign('facturaCompra_id')->references('id')->on('factura_compra');
         });
     }
 

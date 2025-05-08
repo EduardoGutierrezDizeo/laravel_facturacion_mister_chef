@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 17-03-2025 a las 05:53:13
+-- Tiempo de generación: 20-03-2025 a las 21:21:47
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -32,6 +32,14 @@ CREATE TABLE `cache` (
   `value` mediumtext NOT NULL,
   `expiration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `cache`
+--
+
+INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
+('edojose@gmail.com|127.0.0.1', 'i:1;', 1742486397),
+('edojose@gmail.com|127.0.0.1:timer', 'i:1742486397;', 1742486397);
 
 -- --------------------------------------------------------
 
@@ -247,6 +255,14 @@ CREATE TABLE `password_reset_tokens` (
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `password_reset_tokens`
+--
+
+INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
+('edojose1518@gmail.com', '$2y$12$bxyz/CxBRlt6vm3D93gl2OWsBleGuNRaV1DK2LMZQgwWyM/ftcn5O', '2025-03-20 20:19:46'),
+('tutovideos1518@gmail.com', '$2y$12$6FJok.IqBlIyR3Tc3BG/eeA0qfejU.WPSi31HB5GDZ4uHd1Ii5WYG', '2025-03-20 20:21:04');
+
 -- --------------------------------------------------------
 
 --
@@ -262,22 +278,6 @@ CREATE TABLE `productos` (
   `precioVentaProducto` decimal(10,2) NOT NULL,
   `precioCostoProducto` decimal(10,2) NOT NULL,
   `precioProduccionProducto` decimal(10,2) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `provedores`
---
-
-CREATE TABLE `provedores` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `nombreProvedor` varchar(255) NOT NULL,
-  `ciudad` varchar(255) NOT NULL,
-  `direccion` varchar(255) NOT NULL,
-  `numeroTelefono` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -313,6 +313,14 @@ CREATE TABLE `sessions` (
   `last_activity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('d6iJBiuc1s5kfXrQyxCRRZKjnRg03iF09QVHcPNY', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYllDY21taVpsRWRwVFZvd0NaNko3UmVYeHNEZzJVWjVtMk5xVWwwaCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fX0=', 1742490271),
+('UDaTNgP3AwSKYkgnUQvDXRi9G97d3lzIV6VJlFLl', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSHBHcmk4VGJqSklUbFkzaVFtUmg5SzFNQUNkekpCMHdQM3J0TWt3SiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wYXNzd29yZC9yZXNldCI7fX0=', 1742502066);
+
 -- --------------------------------------------------------
 
 --
@@ -329,6 +337,14 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Eduardo José Gutierrez De Piñerez Dizeo', 'edojose1518@gmail.com', NULL, '$2y$12$Wg6RWEbpX//DIskU1yHx0.NYrO1uzsuFqBMNf/e5mGU8mg5qQVcX6', NULL, '2025-03-20 16:00:38', '2025-03-20 16:00:38'),
+(2, 'pablo', 'tutovideos1518@gmail.com', NULL, '$2y$12$thwcYZx67XlOOvZgPoTOEeQ2s.3JqHDDmurCv2ntBuBYA05BvPt5O', NULL, '2025-03-20 20:20:43', '2025-03-20 20:20:43');
 
 --
 -- Índices para tablas volcadas
@@ -430,12 +446,6 @@ ALTER TABLE `productos`
   ADD KEY `productos_idproveedor_foreign` (`idProveedor`);
 
 --
--- Indices de la tabla `provedores`
---
-ALTER TABLE `provedores`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indices de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
@@ -521,12 +531,6 @@ ALTER TABLE `productos`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `provedores`
---
-ALTER TABLE `provedores`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
@@ -536,7 +540,7 @@ ALTER TABLE `proveedores`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas

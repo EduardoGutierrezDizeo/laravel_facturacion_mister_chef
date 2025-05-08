@@ -5,25 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-
-class Factura extends Model
+class Factura_compra extends Model
 {
     use HasFactory;
 
-    protected $table = 'facturas';
+    protected $table = 'factura_compra';
     protected $primaryKey = 'id';
+
     protected $fillable = [
-        'cliente_id',
+        'proveedor_id',
         'usuario_id',
         'fecha',
-        'total',
         'status',
         'registradoPor',
     ];
 
-    public function cliente()
+    public function proveedor()
     {
-        return $this->belongsTo(Cliente::class, 'cliente_id');
+        return $this->belongsTo(Proveedor::class, 'proveedor_id');
     }
 
     public function usuario()
@@ -31,13 +30,8 @@ class Factura extends Model
         return $this->belongsTo(User::class, 'usuario_id');
     }
 
-    public function detalles()
+    public function detallesCompra()
     {
-        return $this->hasMany(Detalle_Factura::class, 'factura_id');
-    }
-
-    public function cuentaPorCobrar()
-    {
-        return $this->hasOne(Cuenta_Por_Cobrar::class, 'factura_id');
+        return $this->hasMany(Detalle_Compra::class, 'facturaCompra_id');
     }
 }

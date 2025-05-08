@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('cuentas_por_cobrar', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('factura_id');
-            $table->string('nombreCliente');
-            $table->integer('numeroFactura');
             $table->decimal('totalCuentaPendiente',10,2);
             $table->char('status');
             $table->timestamps();

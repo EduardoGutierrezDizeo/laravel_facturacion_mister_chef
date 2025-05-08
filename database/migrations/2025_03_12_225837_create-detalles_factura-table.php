@@ -10,16 +10,15 @@ return new class extends Migration
     {
         Schema::create("detalles_factura", function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("idProducto");
-            $table->unsignedBigInteger("idFactura");
-            $table->string("nombreProducto");
+            $table->unsignedBigInteger("producto_id");
+            $table->unsignedBigInteger("factura_id");
             $table->integer("cantidadProducto");
             $table->decimal("precio", 10, 2);
             $table->decimal("subTotal", 10, 2);
             $table->timestamp("created_at")->nullable();
             $table->timestamp("updated_at")->nullable();
-            $table->foreign("idProducto")->references("id")->on("productos");
-            $table->foreign("idFactura")->references("id")->on("facturas");
+            $table->foreign("producto_id")->references("id")->on("productos");
+            $table->foreign("factura_id")->references("id")->on("facturas");
         });
     }
 
