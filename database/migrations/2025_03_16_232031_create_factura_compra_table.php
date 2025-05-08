@@ -11,17 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('facturas', function (Blueprint $table) {
+        Schema::create('factura_compra', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cliente_id');
+            $table->unsignedBigInteger('proveedor_id');
             $table->unsignedBigInteger('usuario_id');
-            $table->datetime('fecha')->nullable();
-            $table->decimal('total', 10 , 2);
-            $table->boolean('status');
+            $table->dateTime('fecha');
+            $table->char('status');
             $table->string('registradoPor');
-            $table->timestamp('created_at')->nullable(); 
-            $table->timestamp('updated_at')->nullable();
-            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->timestamps();
+            $table->foreign('proveedor_id')->references('id')->on('proveedores');
             $table->foreign('usuario_id')->references('id')->on('users');
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('facturas');
+        Schema::dropIfExists('factura_compra');
     }
 };

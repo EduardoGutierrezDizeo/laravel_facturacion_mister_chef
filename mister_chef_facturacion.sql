@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 13-03-2025 a las 05:04:07
+-- Tiempo de generación: 20-03-2025 a las 21:21:47
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -38,10 +38,8 @@ CREATE TABLE `cache` (
 --
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('edojose1518@gmail.com|127.0.0.1', 'i:1;', 1740400144),
-('edojose1518@gmail.com|127.0.0.1:timer', 'i:1740400144;', 1740400144),
-('ejgutierrezdepd@ufpso.edu.co|127.0.0.1', 'i:1;', 1740400131),
-('ejgutierrezdepd@ufpso.edu.co|127.0.0.1:timer', 'i:1740400131;', 1740400131);
+('edojose@gmail.com|127.0.0.1', 'i:1;', 1742486397),
+('edojose@gmail.com|127.0.0.1:timer', 'i:1742486397;', 1742486397);
 
 -- --------------------------------------------------------
 
@@ -63,12 +61,47 @@ CREATE TABLE `cache_locks` (
 
 CREATE TABLE `clientes` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) NOT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `bornDate` date DEFAULT NULL,
+  `telefono` varchar(255) NOT NULL,
+  `direccion` varchar(255) DEFAULT NULL,
+  `fechaNacimiento` date DEFAULT NULL,
   `status` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cuentas_por_cobrar`
+--
+
+CREATE TABLE `cuentas_por_cobrar` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `factura_id` bigint(20) UNSIGNED NOT NULL,
+  `nombreCliente` varchar(255) NOT NULL,
+  `numeroFactura` int(11) NOT NULL,
+  `totalCuentaPendiente` decimal(10,2) NOT NULL,
+  `status` char(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalles_compra`
+--
+
+CREATE TABLE `detalles_compra` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `producto_id` bigint(20) UNSIGNED NOT NULL,
+  `factura_id` bigint(20) UNSIGNED NOT NULL,
+  `nombrePoducto` varchar(255) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio` decimal(10,2) NOT NULL,
+  `subTotal` decimal(10,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -100,12 +133,31 @@ CREATE TABLE `detalles_factura` (
 CREATE TABLE `facturas` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_cliente` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `phone` varchar(255) NOT NULL,
-  `date` datetime DEFAULT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `telefono` varchar(255) NOT NULL,
+  `fecha` datetime DEFAULT NULL,
   `total` decimal(10,2) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `registerBy` varchar(255) NOT NULL,
+  `registradoPor` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `factura_compra`
+--
+
+CREATE TABLE `factura_compra` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `proveedor_id` bigint(20) UNSIGNED NOT NULL,
+  `usuario_id` bigint(20) UNSIGNED NOT NULL,
+  `nombreProvedor` varchar(255) NOT NULL,
+  `telefono` varchar(255) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `status` char(255) NOT NULL,
+  `registradoPor` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -178,15 +230,18 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '0001_01_01_000000_create_users_table', 1),
-(2, '0001_01_01_000001_create_cache_table', 1),
-(3, '0001_01_01_000002_create_jobs_table', 1),
-(4, '2025_03_10_070707_create-clientes-table', 2),
 (5, '2025_03_10_072617_create-facturas-table', 3),
-(6, '2025_03_12_225748_create-facturas-table', 4),
-(7, '2025_03_12_225805_create-proveedores-table', 4),
-(8, '2025_03_12_225817_create-productos-table', 4),
-(9, '2025_03_12_225837_create-detalles_factura-table', 4);
+(10, '0001_01_01_000000_create_users_table', 4),
+(11, '0001_01_01_000001_create_cache_table', 4),
+(12, '0001_01_01_000002_create_jobs_table', 4),
+(13, '2025_03_10_070707_create-clientes-table', 4),
+(14, '2025_03_12_225748_create-facturas-table', 4),
+(15, '2025_03_12_225805_create-proveedores-table', 4),
+(16, '2025_03_12_225817_create-productos-table', 4),
+(17, '2025_03_12_225837_create-detalles_factura-table', 4),
+(18, '2025_03_16_232031_create_factura_compra_table', 5),
+(19, '2025_03_16_232353_create_detalles_compra_table', 5),
+(20, '2025_03_16_232727_create_cuentas_por_cobrar_table', 5);
 
 -- --------------------------------------------------------
 
@@ -205,8 +260,8 @@ CREATE TABLE `password_reset_tokens` (
 --
 
 INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
-('edojose1518@gmail.com', '$2y$12$ozUV7T46Vf0GwCICvlJtBulHsJ.28EOTnPY0E6mbV8lonisiete.O', '2025-02-20 20:30:54'),
-('ejgutierrezdepd@ufpso.edu.co', '$2y$12$Tk4H/92a69lEjWbdtWxHcuxssgbnxXSMu//8UY0nwJpRBrsJHL26y', '2025-02-20 20:33:04');
+('edojose1518@gmail.com', '$2y$12$bxyz/CxBRlt6vm3D93gl2OWsBleGuNRaV1DK2LMZQgwWyM/ftcn5O', '2025-03-20 20:19:46'),
+('tutovideos1518@gmail.com', '$2y$12$6FJok.IqBlIyR3Tc3BG/eeA0qfejU.WPSi31HB5GDZ4uHd1Ii5WYG', '2025-03-20 20:21:04');
 
 -- --------------------------------------------------------
 
@@ -216,7 +271,7 @@ INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
 
 CREATE TABLE `productos` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `idProvedor` bigint(20) UNSIGNED NOT NULL,
+  `idProveedor` bigint(20) UNSIGNED NOT NULL,
   `nombreProducto` varchar(255) NOT NULL,
   `stockProducto` int(11) NOT NULL,
   `gramajeProducto` int(11) NOT NULL,
@@ -230,12 +285,12 @@ CREATE TABLE `productos` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `provedores`
+-- Estructura de tabla para la tabla `proveedores`
 --
 
-CREATE TABLE `provedores` (
+CREATE TABLE `proveedores` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `nombreProvedor` varchar(255) NOT NULL,
+  `nombreProveedor` varchar(255) NOT NULL,
   `ciudad` varchar(255) NOT NULL,
   `direccion` varchar(255) NOT NULL,
   `numeroTelefono` varchar(255) NOT NULL,
@@ -263,8 +318,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('XlHsBnHFIF1Q6550tZoNM8QNbyBa1hlkQHh27WY5', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoidFN3YUlqZ3JKNlBFdEpkaVhLM0JPbEVwS1V1Sm51ek94S2w0cUJHRSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ob21lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjQ6ImF1dGgiO2E6MTp7czoyMToicGFzc3dvcmRfY29uZmlybWVkX2F0IjtpOjE3NDE4MzI0ODc7fX0=', 1741832487),
-('XLxvVzI11oMgGwjoNPtJ2olpmbVLawA7FguRcvMt', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZ3g0N0dETUEwWTJSV0lkc2xFMmJlTTU0ZmNMMU15Y3lqN3Q2TUlJNyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7czo0OiJhdXRoIjthOjE6e3M6MjE6InBhc3N3b3JkX2NvbmZpcm1lZF9hdCI7aToxNzQxNjE5NzI4O319', 1741619740);
+('d6iJBiuc1s5kfXrQyxCRRZKjnRg03iF09QVHcPNY', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYllDY21taVpsRWRwVFZvd0NaNko3UmVYeHNEZzJVWjVtMk5xVWwwaCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fX0=', 1742490271),
+('UDaTNgP3AwSKYkgnUQvDXRi9G97d3lzIV6VJlFLl', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSHBHcmk4VGJqSklUbFkzaVFtUmg5SzFNQUNkekpCMHdQM3J0TWt3SiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wYXNzd29yZC9yZXNldCI7fX0=', 1742502066);
 
 -- --------------------------------------------------------
 
@@ -288,7 +343,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(3, 'camilo sanchez', 'tutovideos1518@gmail.com', NULL, '$2y$12$j7XPwOVoIASb.z9iOqiOtuZ/snIaPUCKxlkG2mgAdY6zSHg6NCLvu', NULL, '2025-02-24 13:28:45', '2025-02-24 13:28:45');
+(1, 'Eduardo José Gutierrez De Piñerez Dizeo', 'edojose1518@gmail.com', NULL, '$2y$12$Wg6RWEbpX//DIskU1yHx0.NYrO1uzsuFqBMNf/e5mGU8mg5qQVcX6', NULL, '2025-03-20 16:00:38', '2025-03-20 16:00:38'),
+(2, 'pablo', 'tutovideos1518@gmail.com', NULL, '$2y$12$thwcYZx67XlOOvZgPoTOEeQ2s.3JqHDDmurCv2ntBuBYA05BvPt5O', NULL, '2025-03-20 20:20:43', '2025-03-20 20:20:43');
 
 --
 -- Índices para tablas volcadas
@@ -313,6 +369,21 @@ ALTER TABLE `clientes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `cuentas_por_cobrar`
+--
+ALTER TABLE `cuentas_por_cobrar`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cuentas_por_cobrar_factura_id_foreign` (`factura_id`);
+
+--
+-- Indices de la tabla `detalles_compra`
+--
+ALTER TABLE `detalles_compra`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `detalles_compra_producto_id_foreign` (`producto_id`),
+  ADD KEY `detalles_compra_factura_id_foreign` (`factura_id`);
+
+--
 -- Indices de la tabla `detalles_factura`
 --
 ALTER TABLE `detalles_factura`
@@ -326,6 +397,14 @@ ALTER TABLE `detalles_factura`
 ALTER TABLE `facturas`
   ADD PRIMARY KEY (`id`),
   ADD KEY `facturas_id_cliente_foreign` (`id_cliente`);
+
+--
+-- Indices de la tabla `factura_compra`
+--
+ALTER TABLE `factura_compra`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `factura_compra_proveedor_id_foreign` (`proveedor_id`),
+  ADD KEY `factura_compra_usuario_id_foreign` (`usuario_id`);
 
 --
 -- Indices de la tabla `failed_jobs`
@@ -364,12 +443,12 @@ ALTER TABLE `password_reset_tokens`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `productos_idprovedor_foreign` (`idProvedor`);
+  ADD KEY `productos_idproveedor_foreign` (`idProveedor`);
 
 --
--- Indices de la tabla `provedores`
+-- Indices de la tabla `proveedores`
 --
-ALTER TABLE `provedores`
+ALTER TABLE `proveedores`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -398,6 +477,18 @@ ALTER TABLE `clientes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `cuentas_por_cobrar`
+--
+ALTER TABLE `cuentas_por_cobrar`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `detalles_compra`
+--
+ALTER TABLE `detalles_compra`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `detalles_factura`
 --
 ALTER TABLE `detalles_factura`
@@ -407,6 +498,12 @@ ALTER TABLE `detalles_factura`
 -- AUTO_INCREMENT de la tabla `facturas`
 --
 ALTER TABLE `facturas`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `factura_compra`
+--
+ALTER TABLE `factura_compra`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -425,7 +522,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -434,20 +531,33 @@ ALTER TABLE `productos`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `provedores`
+-- AUTO_INCREMENT de la tabla `proveedores`
 --
-ALTER TABLE `provedores`
+ALTER TABLE `proveedores`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `cuentas_por_cobrar`
+--
+ALTER TABLE `cuentas_por_cobrar`
+  ADD CONSTRAINT `cuentas_por_cobrar_factura_id_foreign` FOREIGN KEY (`factura_id`) REFERENCES `facturas` (`id`);
+
+--
+-- Filtros para la tabla `detalles_compra`
+--
+ALTER TABLE `detalles_compra`
+  ADD CONSTRAINT `detalles_compra_factura_id_foreign` FOREIGN KEY (`factura_id`) REFERENCES `facturas` (`id`),
+  ADD CONSTRAINT `detalles_compra_producto_id_foreign` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`);
 
 --
 -- Filtros para la tabla `detalles_factura`
@@ -463,10 +573,17 @@ ALTER TABLE `facturas`
   ADD CONSTRAINT `facturas_id_cliente_foreign` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`);
 
 --
+-- Filtros para la tabla `factura_compra`
+--
+ALTER TABLE `factura_compra`
+  ADD CONSTRAINT `factura_compra_proveedor_id_foreign` FOREIGN KEY (`proveedor_id`) REFERENCES `proveedores` (`id`),
+  ADD CONSTRAINT `factura_compra_usuario_id_foreign` FOREIGN KEY (`usuario_id`) REFERENCES `users` (`id`);
+
+--
 -- Filtros para la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD CONSTRAINT `productos_idprovedor_foreign` FOREIGN KEY (`idProvedor`) REFERENCES `provedores` (`id`);
+  ADD CONSTRAINT `productos_idproveedor_foreign` FOREIGN KEY (`idProveedor`) REFERENCES `proveedores` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -13,16 +13,17 @@ return new class extends Migration
     {
         Schema::create("productos", function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("idProveedor");
+            $table->unsignedBigInteger("proveedor_id");
             $table->string("nombreProducto");
-            $table->integer("stockProducto");
-            $table->integer("gramajeProducto");
-            $table->decimal("precioVentaProducto", 10, 2);
-            $table->decimal("precioCostoProducto", 10, 2);
-            $table->decimal("precioProduccionProducto", 10, 2);
+            $table->integer("stockActual");
+            $table->integer("stockMinimo");
+            $table->integer("gramaje");
+            $table->decimal("precioVenta", 10, 2);
+            $table->decimal("precioCosto", 10, 2);
+            $table->decimal("precioProduccion", 10, 2);
             $table->timestamp("created_at")->nullable();
             $table->timestamp("updated_at")->nullable();
-            $table->foreign("idProveedor")->references("id")->on("proveedores");
+            $table->foreign("proveedor_id")->references("id")->on("proveedores");
         });
     }
 
