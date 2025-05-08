@@ -15,8 +15,6 @@ class Factura_compra extends Model
     protected $fillable = [
         'proveedor_id',
         'usuario_id',
-        'nombreProveedor',
-        'telefono',
         'fecha',
         'status',
         'registradoPor',
@@ -24,16 +22,16 @@ class Factura_compra extends Model
 
     public function proveedor()
     {
-        return $this->belongsTo(Proveedor::class, 'proveedores_id');
+        return $this->belongsTo(Proveedor::class, 'proveedor_id');
     }
 
     public function usuario()
     {
-        return $this->belongsTo(User::class, 'usuarios_id');
+        return $this->belongsTo(User::class, 'usuario_id');
     }
 
-    public function detalles()
+    public function detallesCompra()
     {
-        return $this->hasMany(Detalle_Compra::class, 'factura_compra_id');
+        return $this->hasMany(Detalle_Compra::class, 'facturaCompra_id');
     }
 }

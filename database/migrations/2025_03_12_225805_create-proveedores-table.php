@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("nombreProveedor");
             $table->string("ciudad");   
-            $table->string("direccion");
+            $table->string("direccion")->nullable();
+            $table->string("email")->nullable();
             $table->string("numeroTelefono");
             $table->timestamp("created_at")->nullable();
             $table->timestamp("updated_at")->nullable();                             

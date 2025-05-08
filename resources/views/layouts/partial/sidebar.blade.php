@@ -30,10 +30,10 @@
                with font-awesome or any other icon font library -->
           
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="{{route('productos.index')}}" class="nav-link">
+              <i class='fas fa-book' style='font-size:20px'></i>
               <p>
-                Widgets
+                Productos
               </p>
             </a>
           </li>

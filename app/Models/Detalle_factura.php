@@ -14,9 +14,8 @@ class Detalle_factura extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'idProducto',
-        'idFactura',
-        'nombreProducto',
+        'producto_id',
+        'factura_id',
         'cantidadProducto',
         'precio',
         'subTotal',
@@ -24,11 +23,11 @@ class Detalle_factura extends Model
 
     public function factura()
     {
-        return $this->belongsTo(Factura::class, 'facturas_id');
+        return $this->belongsTo(Factura::class, 'factura_id');
     }
 
     public function producto()
     {
-        return $this->belongsTo(Producto::class, 'productos_id');
+        return $this->belongsTo(Producto::class, 'producto_id');
     }
 }

@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_cliente');
-            $table->string('nombre');
-            $table->string('telefono');
+            $table->unsignedBigInteger('cliente_id');
+            $table->unsignedBigInteger('usuario_id');
             $table->datetime('fecha')->nullable();
             $table->decimal('total', 10 , 2);
             $table->boolean('status');
             $table->string('registradoPor');
             $table->timestamp('created_at')->nullable(); 
             $table->timestamp('updated_at')->nullable();
-            $table->foreign('id_cliente')->references('id')->on('clientes');
+            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->foreign('usuario_id')->references('id')->on('users');
         });
     }
 

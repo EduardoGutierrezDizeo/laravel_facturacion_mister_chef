@@ -13,32 +13,31 @@ class Factura extends Model
     protected $table = 'facturas';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'id_cliente',
-        'name',
-        'phone',
-        'date',
+        'cliente_id',
+        'usuario_id',
+        'fecha',
         'total',
         'status',
-        'registerBy',
+        'registradoPor',
     ];
 
     public function cliente()
     {
-        return $this->belongsTo(Cliente::class, 'clientes_id');
+        return $this->belongsTo(Cliente::class, 'cliente_id');
     }
 
     public function usuario()
     {
-        return $this->belongsTo(User::class, 'usuarios_id');
+        return $this->belongsTo(User::class, 'usuario_id');
     }
 
     public function detalles()
     {
-        return $this->hasMany(Detalle_Factura::class, 'facturas_id');
+        return $this->hasMany(Detalle_Factura::class, 'factura_id');
     }
 
     public function cuentaPorCobrar()
     {
-        return $this->hasOne(Cuenta_Por_Cobrar::class, 'facturas_id');
+        return $this->hasOne(Cuenta_Por_Cobrar::class, 'factura_id');
     }
 }

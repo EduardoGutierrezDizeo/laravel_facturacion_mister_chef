@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.applogin')
 
 @section('content')
     <div class="w-full min-h-screen flex items-center">
