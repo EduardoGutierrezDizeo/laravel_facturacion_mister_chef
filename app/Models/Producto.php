@@ -19,6 +19,7 @@ class Producto extends Model
         'precioVenta',
         'precioCosto',
         'precioProduccion',
+        'status',
     ];
 
     public function detalles_factura()
