@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductoController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -10,9 +11,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::middleware(['auth'])->group(function(){
-    Route::resource('productos', ProductoController::class);
+Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::resource('productos', ProductoController::class); 
+    Route::get('/cambioestadoproducto', [ProductoController::class, 'cambioestadoproducto'])->name('cambioestadoproducto');
 });
 
 //---------------------------------

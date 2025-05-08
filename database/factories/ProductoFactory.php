@@ -26,6 +26,7 @@ class ProductoFactory extends Factory
             'precioVenta' => $this->faker->randomFloat(2, 1, 100),
             'precioCosto' => $this->faker->randomFloat(2, 1, 50),
             'precioProduccion' => $this->faker->randomFloat(2, 1, 40),
+            'status' => $this->faker->boolean(),
             'created_at' => now(),
             'updated_at' => now(),
         ];

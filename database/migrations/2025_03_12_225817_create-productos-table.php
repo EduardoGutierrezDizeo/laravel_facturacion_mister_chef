@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal("precioVenta", 10, 2);
             $table->decimal("precioCosto", 10, 2);
             $table->decimal("precioProduccion", 10, 2);
+            $table->boolean("status");
             $table->timestamp("created_at")->nullable();
             $table->timestamp("updated_at")->nullable();
             $table->foreign("proveedor_id")->references("id")->on("proveedores");
