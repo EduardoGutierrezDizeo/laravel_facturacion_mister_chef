@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('factura_id');
             $table->decimal('totalCuentaPendiente',10,2);
-            $table->char('status');
+            $table->boolean('estado');
             $table->timestamps();
             $table->foreign('factura_id')->references('id')->on('facturas');
         });

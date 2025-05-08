@@ -24,7 +24,7 @@ class FacturaFactory extends Factory
             'usuario_id' => User::inRandomOrder()->first()->id,
             'fecha' => $this->faker->dateTimeThisYear(),
             'total' => $this->faker->randomFloat(2, 10, 1000),
-            'status' => $this->faker->boolean(),
+            'estado' => $this->faker->boolean(),
             'registradoPor' => $this->faker->name(),
             'created_at' => now(),
             'updated_at' => now(),

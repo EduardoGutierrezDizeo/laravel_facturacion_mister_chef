@@ -15,7 +15,7 @@ class Cuenta_por_cobrar extends Model
     protected $fillable = [
         'factura_id',
         'totalCuentaPendiente',
-        'status',
+        'estado',
     ];
 
     public function factura()

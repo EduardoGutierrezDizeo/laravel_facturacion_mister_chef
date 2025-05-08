@@ -17,7 +17,7 @@ class Factura extends Model
         'usuario_id',
         'fecha',
         'total',
-        'status',
+        'estado',
         'registradoPor',
     ];
 

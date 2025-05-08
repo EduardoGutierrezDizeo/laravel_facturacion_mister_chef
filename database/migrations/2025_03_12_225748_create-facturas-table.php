@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('usuario_id');
             $table->datetime('fecha')->nullable();
             $table->decimal('total', 10 , 2);
-            $table->boolean('status');
+            $table->boolean('estado');
             $table->string('registradoPor');
             $table->timestamp('created_at')->nullable(); 
             $table->timestamp('updated_at')->nullable();

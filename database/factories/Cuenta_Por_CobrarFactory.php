@@ -20,7 +20,7 @@ class Cuenta_Por_CobrarFactory extends Factory
         return [
             'factura_id' => Factura::inRandomOrder()->first()->id,
             'totalCuentaPendiente' => $this->faker->randomFloat(2, 10, 500),
-            'status' => $this->faker->randomElement(['pendiente', 'pagado', 'vencido']),
+            'estado' => $this->faker->boolean(),
             'created_at' => now(),
             'updated_at' => now(),
         ];

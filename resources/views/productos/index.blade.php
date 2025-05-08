@@ -46,7 +46,7 @@
                                         <td>
 										
 											<input data-type="producto" data-id="{{$producto->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
-											data-toggle="toggle" data-on="Activo" data-off="Inactivo" {{ $producto->status ? 'checked' : '' }}>
+											data-toggle="toggle" data-on="Activo" data-off="Inactivo" {{ $producto->estado ? 'checked' : '' }}>
 										
 										</td>
                                         <td>

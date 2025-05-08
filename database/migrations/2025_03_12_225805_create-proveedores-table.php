@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("direccion")->nullable();
             $table->string("email")->nullable();
             $table->string("numeroTelefono");
+            $table->boolean("estado");
             $table->timestamp("created_at")->nullable();
             $table->timestamp("updated_at")->nullable();                             
         });
