@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('proveedor_id');
             $table->unsignedBigInteger('usuario_id');
             $table->dateTime('fecha');
-            $table->char('status');
+            $table->boolean('estado');
             $table->string('registradoPor');
             $table->timestamps();
             $table->foreign('proveedor_id')->references('id')->on('proveedores');

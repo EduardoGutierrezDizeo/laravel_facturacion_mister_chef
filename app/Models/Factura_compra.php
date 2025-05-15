@@ -16,7 +16,7 @@ class Factura_compra extends Model
         'proveedor_id',
         'usuario_id',
         'fecha',
-        'status',
+        'estado',
         'registradoPor',
     ];
 

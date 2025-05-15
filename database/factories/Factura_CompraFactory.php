@@ -22,7 +22,7 @@ class Factura_CompraFactory extends Factory
             'proveedor_id' => Proveedor::inRandomOrder()->first()->id,
             'usuario_id' => User::inRandomOrder()->first()->id,
             'fecha' => $this->faker->dateTimeThisYear(),
-            'status' => $this->faker->randomElement(['pendiente', 'completado', 'cancelado']),
+            'estado' => $this->faker->boolean(),
             'registradoPor' => $this->faker->name(),
             'created_at' => now(),
             'updated_at' => now(),

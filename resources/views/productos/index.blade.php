@@ -9,6 +9,7 @@
         <div class="container-fluid">
         </div>
     </section>
+    @include('layouts.partial.msg')
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -28,7 +29,11 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Nombre</th>
-                                        <th>Descripcion</th>
+                                        <th>Gramaje</th>
+                                        <th>Precio venta</th>
+                                        <th>Estado</th>
+                                        <th>Accion</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -36,6 +41,24 @@
                                     <tr>
                                         <td>{{$producto->id}}</td>
                                         <td>{{$producto->nombreProducto}}</td>
+                                        <td>{{$producto->gramaje}}</td>
+                                        <td>{{$producto->precioVenta}}</td>
+                                        <td>
+										
+											<input data-type="producto" data-id="{{$producto->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
+											data-toggle="toggle" data-on="Activo" data-off="Inactivo" {{ $producto->estado ? 'checked' : '' }}>
+										
+										</td>
+                                        <td>
+                                            <form class="d-inline delete-form" action="{{ route('productos.destroy', $producto) }}"  method="POST">
+												@csrf
+												@method('DELETE')
+												<button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
+											</form>
+                                        </td>
+
+
+                                        
                                     </tr>
                                     @endforeach
                                     

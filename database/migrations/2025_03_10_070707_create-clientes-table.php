@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('telefono');
             $table->string('direccion')->nullable();
             $table->date('fechaNacimiento')->nullable();
-            $table->boolean('status');
+            $table->boolean('estado');
             $table->timestamp('created_at')->nullable(); 
             $table->timestamp('updated_at')->nullable();
         });

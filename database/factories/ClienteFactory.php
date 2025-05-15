@@ -22,7 +22,7 @@ class ClienteFactory extends Factory
             'telefono' => $this->faker->phoneNumber(),
             'direccion' => $this->faker->address(),
             'fechaNacimiento' => $this->faker->date(),
-            'status' => $this->faker->boolean(),
+            'estado' => $this->faker->boolean(),
             'created_at' => now(),
             'updated_at' => now(),
         ];

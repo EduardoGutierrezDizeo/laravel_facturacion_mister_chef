@@ -18,6 +18,7 @@ class Proveedor extends Model
         'direccion',
         'email',
         'numeroTelefono',
+        'estado',
     ];
 
     public function productos()

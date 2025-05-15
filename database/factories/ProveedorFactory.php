@@ -22,6 +22,7 @@ class ProveedorFactory extends Factory
             'direccion' => $this->faker->address(),
             'email' => $this->faker->safeEmail(),
             'numeroTelefono' => $this->faker->phoneNumber(),
+            'estado' => $this->faker->boolean(),
             'created_at' => now(),
             'updated_at' => now(),
         ];

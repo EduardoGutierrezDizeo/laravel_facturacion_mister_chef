@@ -17,7 +17,7 @@ class Cliente extends Model
         'telefono',
         'direccion',
         'fechaNacimiento',
-        'status',
+        'estado',
     ];
 
     public function facturas()
